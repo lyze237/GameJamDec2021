@@ -10,13 +10,10 @@
 	<inherits name="jsr305" />
 	<inherits name="space.earlygrey.shapedrawer" />
 	<entry-point class="dev.lyze.gamejam.gwt.GwtLauncher" />
-	<extend-configuration-property name="artemis.reflect.include" value="dev.lyze.towerdefence.archtypes" />
-	<extend-configuration-property name="artemis.reflect.include" value="dev.lyze.towerdefence.systems" />
-	<extend-configuration-property name="artemis.reflect.include" value="dev.lyze.towerdefence.managers" />
-	<extend-configuration-property name="artemis.reflect.include" value="dev.lyze.towerdefence.systems.abstracts" />
-	<extend-configuration-property name="artemis.reflect.include" value="dev.lyze.towerdefence.components" />
-	<extend-configuration-property name="artemis.reflect.include" value="com.badlogic.gdx.utils.viewport" />
-	<extend-configuration-property name="artemis.reflect.include" value="com.badlogic.gdx.graphics.g2d.SpriteBatch" />
+	<extend-configuration-property name="artemis.reflect.include" value="dev.lyze.gamejam.systems" />
+	<extend-configuration-property name="artemis.reflect.include" value="dev.lyze.gamejam.components" />
+	<extend-configuration-property name="artemis.reflect.include" value="com.badlogic.gdx.graphics.PerspectiveCamera" />
+	<extend-configuration-property name="artemis.reflect.include" value="net.mgsx.gltf.scene3d.scene.SceneManager" />
 	<set-configuration-property name="gdx.assetpath" value="../assets" />
 	<set-configuration-property name="xsiframe.failIfScriptTag" value="FALSE"/>
 	<!-- These two lines reduce the work GWT has to do during compilation and also shrink output size. -->
