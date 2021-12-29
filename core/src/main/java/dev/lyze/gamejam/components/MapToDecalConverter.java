@@ -10,7 +10,6 @@ import com.badlogic.gdx.graphics.glutils.FrameBuffer;
 import com.badlogic.gdx.maps.MapLayer;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
-import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.utils.ScreenUtils;
 import lombok.Getter;
@@ -18,12 +17,11 @@ import lombok.NoArgsConstructor;
 import lombok.var;
 
 @NoArgsConstructor
-public class MapComponent extends Component {
+public class MapToDecalConverter extends Component {
     @Getter
     private TextureRegion texture;
 
-    public MapComponent(String path) {
-        TiledMap map = new TmxMapLoader().load(path);
+    public void convert(TiledMap map) {
         var renderer = new OrthogonalTiledMapRenderer(map);
 
         var layer = findTileLayer(map);

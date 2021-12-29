@@ -6,12 +6,9 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.PerspectiveCamera;
-import dev.lyze.gamejam.components.DecalComponent;
-import dev.lyze.gamejam.components.MapComponent;
-import dev.lyze.gamejam.systems.CameraMovementSystem;
-import dev.lyze.gamejam.systems.DecalsRenderingSystem;
-import dev.lyze.gamejam.systems.MapSetupSystem;
-import dev.lyze.gamejam.systems.ThreeDRenderingSystem;
+import dev.lyze.gamejam.components.*;
+import dev.lyze.gamejam.managers.Assets;
+import dev.lyze.gamejam.systems.*;
 import lombok.var;
 import net.mgsx.gltf.scene3d.scene.SceneManager;
 
@@ -20,8 +17,10 @@ public class GameScreen extends ScreenAdapter {
 
 	public GameScreen() {
 		var setup = new WorldConfigurationBuilder()
+				.with(new Assets())
 				.with(new CameraMovementSystem())
-				.with(new MapSetupSystem())
+				.with(new ThreeDLoaderSystem())
+				.with(new MapLoaderSystem())
 				.with(new DecalsRenderingSystem())
 				.with(new ThreeDRenderingSystem())
 				.build();
@@ -32,8 +31,13 @@ public class GameScreen extends ScreenAdapter {
 		world = new World(setup);
 
 		world.edit(world.create())
-			.add(new MapComponent("maps/DevMap.tmx"))
-			.add(new DecalComponent());
+				.add(new MapReferenceComponent(Assets.File.MAP_DevMap))
+				.add(new MapToDecalConverter())
+				.add(new DecalComponent());
+
+		world.edit(world.create())
+				.add(new ThreeDReferenceComponent(Assets.File.MODEL_TestTower))
+				.add(new ThreeDComponent());
 	}
 
 	@Override

@@ -10,7 +10,6 @@ import lombok.var;
 import net.mgsx.gltf.loaders.gltf.GLTFLoader;
 import net.mgsx.gltf.scene3d.attributes.PBRCubemapAttribute;
 import net.mgsx.gltf.scene3d.attributes.PBRTextureAttribute;
-import net.mgsx.gltf.scene3d.scene.Scene;
 import net.mgsx.gltf.scene3d.scene.SceneManager;
 import net.mgsx.gltf.scene3d.scene.SceneSkybox;
 import net.mgsx.gltf.scene3d.utils.EnvironmentUtil;
@@ -25,9 +24,6 @@ public class ThreeDRenderingSystem extends BaseSystem {
         camera.near = 0.001f;
         camera.far = 1000f;
         sceneManager.setCamera(camera);
-
-        var model = new GLTFLoader().load(Gdx.files.internal("Cube.gltf"));
-        sceneManager.addScene(new Scene(model.scene));
 
         // setup IBL (image based lighting)
         var environmentCubemap = EnvironmentUtil.createCubemap(new InternalFileHandleResolver(), "environment/environment_", "_0.png", EnvironmentUtil.FACE_NAMES_NEG_POS);
